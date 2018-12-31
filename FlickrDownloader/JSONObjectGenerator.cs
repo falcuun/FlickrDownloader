@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 
 
-namespace ConsoleApp2
+namespace FlickrDownloader
 {
-    class ObjectGenerator
+    class JSONObjectGenerator
     {
 
         public List<string> ListOfIDs = new List<string>();

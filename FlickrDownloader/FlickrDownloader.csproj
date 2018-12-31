@@ -61,8 +61,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FlickrConnection.cs" />
     <Compile Include="JSON.cs" />
-    <Compile Include="ObjectGenerator.cs" />
+    <Compile Include="JSONObjectGenerator.cs" />
     <Compile Include="PhotoModel.cs" />
     <Compile Include="Photos.cs" />
     <Compile Include="Program.cs" />
