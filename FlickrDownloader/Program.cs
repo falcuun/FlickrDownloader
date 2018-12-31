@@ -7,16 +7,6 @@ namespace FlickrDownloader
 {
     class Program
     {
-        private static readonly HttpClient client = new HttpClient();
-        private const string BASE_URL = "https://api.flickr.com/services/rest/?method=";
-
-        #region Methods
-        private const string Galleries_GetPHotos = "flickr.galleries.getPhotos";
-        private const string People_NSID = "flickr.urls.lookupUser";
-        private const string People_GetPublicPhotos = "flickr.people.getPublicPhotos";
-        #endregion
-
-
         static void Main(string[] args)
         {
             FlickrConnection flickrConnection = new FlickrConnection();

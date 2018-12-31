@@ -43,7 +43,6 @@ namespace FlickrDownloader
 
         #endregion
         #endregion
-
         #region Public
         /* Declaring Public Variables
          */
