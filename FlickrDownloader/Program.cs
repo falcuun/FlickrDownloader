@@ -17,9 +17,10 @@ namespace ConsoleApp2
         private const string People_GetPublicPhotos = "flickr.people.getPublicPhotos";
         #endregion
 
-
+        
         static void Main(string[] args)
         {
+
             Console.WriteLine("Write your API KEY");
             string API_KEY = Console.ReadLine();
             if (API_KEY != "")
@@ -70,15 +71,12 @@ namespace ConsoleApp2
                     Console.WriteLine("Incorrect Number Format; Default number of pages set to 1");
                 }
 
-
-
                 for (int i = 1; i <= page; i++)
                 {
                     Method_GetPublicImages = BASE_URL + "flickr.people.getPublicPhotos&api_key=" + API_KEY + "&" +
                                             "user_id=" + NSID + "&per_page=" + number + "&page=" + i + "&format=json&nojsoncallback=1";
                     Console.WriteLine(Method_GetPublicImages);
                     og.GetPhotoId(GetMessage(Method_GetPublicImages).Result);
-                    
                     try
                     {
                         using (WebClient client = new WebClient())
@@ -94,7 +92,10 @@ namespace ConsoleApp2
                             }
                         }
                     }
-                    catch (Exception err) { Console.WriteLine(err.Message + " --MAIN METHOD"); }
+                    catch (Exception err)
+                    {
+                        Console.WriteLine(err.Message + " --MAIN METHOD " + File_Name);
+                    }
                 }
                 Console.ReadLine();
             }
