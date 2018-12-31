@@ -12,11 +12,11 @@ namespace FlickrDownloader
 
         public void User_Information(string jsonValue, int per_page)
         {
-            JSON websitePosts = JsonConvert.DeserializeObject<JSON>(jsonValue);
-            Console.WriteLine("User Has a Total of: " + websitePosts.photos.total + " Public Image(s)");
-            if (websitePosts.photos.total > per_page)
+            JSON UserInformation = JsonConvert.DeserializeObject<JSON>(jsonValue);
+            Console.WriteLine("User Has a Total of: " + UserInformation.photos.total + " Public Image(s)");
+            if (UserInformation.photos.total > per_page)
             {
-                int Available_Pages = websitePosts.photos.total / per_page;
+                int Available_Pages = UserInformation.photos.total / per_page;
                 Console.WriteLine("With " + per_page + " Image(s) per page, User has: " + Available_Pages + " Page(s) Available");
             }
             else
@@ -28,11 +28,11 @@ namespace FlickrDownloader
 
         public void GetPhotoId(string jsonValue)
         {
-            JSON websitePosts = JsonConvert.DeserializeObject<JSON>(jsonValue);
+            JSON PhotoIDs = JsonConvert.DeserializeObject<JSON>(jsonValue);
             
             try
             {
-                foreach (PhotoModel model in websitePosts.photos.photo)
+                foreach (PhotoModel model in PhotoIDs.photos.photo)
                 {
                     ListOfIDs.Add(model.id);
                 }
@@ -45,18 +45,18 @@ namespace FlickrDownloader
 
         public string GetUserNSID(string message)
         {
-            JSON websitePosts = JsonConvert.DeserializeObject<JSON>(message);
-            return websitePosts.user.id; 
+            JSON UserIDs = JsonConvert.DeserializeObject<JSON>(message);
+            return UserIDs.user.id; 
         }
 
         public string GetSizeDownload(string message)
         {
             string jsonValue = message;
             string Download_Link = "";
-            JSON websitePosts = JsonConvert.DeserializeObject<JSON>(jsonValue);
+            JSON GetSizesDownload = JsonConvert.DeserializeObject<JSON>(jsonValue);
             try
             {
-                foreach (SizeModel model in websitePosts.sizes.size)
+                foreach (SizeModel model in GetSizesDownload.sizes.size)
                 {
                     if (model.Label.Equals("Original") || model.Label.Equals("original"))
                     {
@@ -71,6 +71,11 @@ namespace FlickrDownloader
             }
 
             return Download_Link;
+        }
+
+        public void EmptyListOfIDs()
+        {
+            ListOfIDs.RemoveRange(0, ListOfIDs.Count);
         }
     }
 }

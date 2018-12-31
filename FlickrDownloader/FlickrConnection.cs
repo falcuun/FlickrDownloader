@@ -148,6 +148,7 @@ namespace FlickrDownloader
                             client.DownloadFile(DownloadLink, DL_Loc + Photo_ID + ".jpg");
                             Console.WriteLine(DL_Loc + Photo_ID + ".jpg");
                         }
+                        jog.EmptyListOfIDs();
                     }
                 }
                 catch (Exception err)
