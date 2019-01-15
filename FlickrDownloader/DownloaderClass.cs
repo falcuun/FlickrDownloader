@@ -16,18 +16,18 @@ namespace FlickrDownloader
             return Photos_GetSizes;
         }
 
-        public static void DownloadFile(string URL, string file_path)
+        public static void DownloadImage(string URL, string file_path)
         {
             try
             {
                 using (WebClient client = new WebClient())
                 {
-                    client.DownloadFile(URL, file_path);
+                    client.DownloadFileAsync(new Uri(URL), file_path);
                 }
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.InnerException);
+                Console.WriteLine(e.Message);
             }
         }
     }

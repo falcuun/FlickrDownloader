@@ -87,7 +87,7 @@ namespace FlickrDownloader
                 foreach (string Photo_ID in jog.ListOfPhotoIDs)
                 {
                     string DownloadLink = jog.GetSizeDownload(jog.GetMessage(DownloaderClass.GenerateGetSizesAPI(Photo_ID)).Result);
-                    DownloaderClass.DownloadFile(DownloadLink, FormDownloadPath(Download_Location, Photo_ID));
+                    DownloaderClass.DownloadImage(DownloadLink, FormDownloadPath(Download_Location, Photo_ID));
                 }
                 jog.FlushTheListOfIDs();
             }

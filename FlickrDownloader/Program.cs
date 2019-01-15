@@ -52,6 +52,7 @@ namespace FlickrDownloader
             TextSearchPhotosDownload tspd = new TextSearchPhotosDownload();
             Console.WriteLine("Enter Search Query");
             string query = Console.ReadLine();
+            tspd.TotalImages(query);
             Console.WriteLine("Enter Amount of Pictures per page: ");
             while (!tspd.Per_Page(Console.ReadLine())) ;
             Console.WriteLine("Enter Amount of Pages to Download From: ");

@@ -62,8 +62,12 @@ namespace FlickrDownloader
 
         private string GenerateTextSearchURL(string query, int page_index)
         {
-            string url = BASE_URL + Search_By_Text + Program.API_KEY + "&tags=" + query + "&per_page=" + Images_Per_Page + "&page=" + page_index + JSONFormatRequest;
+            string url = BASE_URL + Search_By_Text + Program.API_KEY + "&text=" + query + "&sort=relevance" + "&per_page=" + Images_Per_Page + "&page=" + page_index + JSONFormatRequest;
             return url;
+        }
+        public void TotalImages(string query)
+        {
+            jog.Query_Info(jog.GetMessage(GenerateTextSearchURL(query, 0)).Result);
         }
 
         private string FormDownloadPath(string path, string photo_id)
@@ -77,9 +81,9 @@ namespace FlickrDownloader
             {
                 jog.PopulateListOfPhotoIDs(jog.GetMessage(GenerateTextSearchURL(query, i)).Result);
                 foreach (string Photo_ID in jog.ListOfPhotoIDs)
-                { 
+                {
                     string DownloadLink = jog.GetSizeDownload(jog.GetMessage(DownloaderClass.GenerateGetSizesAPI(Photo_ID)).Result);
-                    DownloaderClass.DownloadFile(DownloadLink, FormDownloadPath(path, Photo_ID));
+                    DownloaderClass.DownloadImage(DownloadLink, FormDownloadPath(path, Photo_ID));
                 }
                 jog.FlushTheListOfIDs();
             }
