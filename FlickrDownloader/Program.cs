@@ -7,23 +7,57 @@ namespace FlickrDownloader
 {
     class Program
     {
+        public static string API_KEY { get; set; }
+
+        public static bool CheckAPIKey(string Key)
+        {
+            if (Key.Equals(""))
+            {
+                Console.WriteLine("Incorrect API Key, Try Again: ");
+                return false;
+            }
+            else
+            {
+                API_KEY = Key;
+                return true;
+            }
+        }
+
         static void Main(string[] args)
         {
-            FlickrConnection flickrConnection = new FlickrConnection();
 
             Console.WriteLine("Enter your API KEY");
-            while (!flickrConnection.CheckAPIKey(Console.ReadLine()));
+            while(CheckAPIKey(Console.ReadLine()))
+            {
+                Console.WriteLine("Choose the Option: \n 1: Search By User URL \n 2: Search By Text ");
+
+                int option = Int32.Parse(Console.ReadLine());
+                switch(option)
+                {
+                    case 1:
+                        SearchByUserURL();
+                        break;
+                    case 2:
+                        break;
+                    default: break;
+                }
+            }
+
+            Console.ReadLine();
+        }
+
+        private static void SearchByUserURL()
+        {
+            UserPhotosDownload userPhotosDownload = new UserPhotosDownload();
             Console.WriteLine("Enter User Url");
             string user_url = Console.ReadLine();
             Console.WriteLine("Enter Amount of Pictures per page: ");
-            while (!flickrConnection.Per_Page(Console.ReadLine()));
+            while (!userPhotosDownload.Per_Page(Console.ReadLine())) ;
             Console.WriteLine("Enter Amount of Pages to Download From: ");
-            while (!flickrConnection.Num_Pages(Console.ReadLine()));
+            while (!userPhotosDownload.Num_Pages(Console.ReadLine())) ;
             Console.WriteLine("Enter Targeted Download Location: ");
             string file_location = Console.ReadLine();
-
-            flickrConnection.DownloadPublicPhotos(user_url, file_location);
-            Console.ReadLine();
+            userPhotosDownload.ObtainUserPublicPhotos(user_url, file_location);
         }
     }
 }

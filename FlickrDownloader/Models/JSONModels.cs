@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FlickrDownloader
+﻿namespace FlickrDownloader
 {
-    class JSON
+    class JSONModels
     {
         public Sizes sizes { get; set; } // Object For Sizes JSON Response
         public Photos photos { get; set; } // Object For Photos JSON Response

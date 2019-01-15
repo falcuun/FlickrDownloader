@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Threading.Tasks;
+using System.Net.Http;
+
 
 
 namespace FlickrDownloader
@@ -11,13 +14,25 @@ namespace FlickrDownloader
          *List to be Filled with Photo IDs from JSON Response
          */
         public List<string> ListOfPhotoIDs = new List<string>();
+        private static readonly HttpClient client = new HttpClient(); // HTTP Client for Establishing Connection
+
+
+        /*
+            Method for getting the JSON Response String from the API URL 
+        */
+        public async Task<string> GetMessage(string url)
+        {
+            string responseString = await client.GetStringAsync(url);
+            return responseString;
+        }
+        
         /*
          *  Method that takes in JSON String as an argument along with amount of images to download per page
          *  Then prints out the information about USER that was searched for
          */
         public void User_Information(string jsonValue, int per_page)
         {
-            JSON UserInformation = JsonConvert.DeserializeObject<JSON>(jsonValue);
+            JSONModels UserInformation = JsonConvert.DeserializeObject<JSONModels>(jsonValue);
             Console.WriteLine("User Has a Total of: " + UserInformation.photos.total + " Public Image(s)");
             if (UserInformation.photos.total > per_page)
             {
@@ -37,10 +52,10 @@ namespace FlickrDownloader
          *  Method that takes in JSON String as an Argument and then parses it to return the ID Of the Image
          *  And add it to the List Of Photo IDs
          */
-        public void GetPhotoId(string jsonValue)
+        public void PopulateListOfPhotoIDs(string jsonValue)
         {
-            JSON PhotoIDs = JsonConvert.DeserializeObject<JSON>(jsonValue);
-            
+            JSONModels PhotoIDs = JsonConvert.DeserializeObject<JSONModels>(jsonValue);
+
             try
             {
                 foreach (PhotoModel model in PhotoIDs.photos.photo)
@@ -50,7 +65,7 @@ namespace FlickrDownloader
             }
             catch (NullReferenceException nre)
             {
-                Console.WriteLine(nre.Message + " --GETPHOTOID");
+                Console.WriteLine(nre.Message + " --POPULATELISTOFPHOTOIDS");
             }
         }
         /*
@@ -59,8 +74,8 @@ namespace FlickrDownloader
          */
         public string GetUserNSID(string message)
         {
-            JSON UserIDs = JsonConvert.DeserializeObject<JSON>(message);
-            return UserIDs.user.id; 
+            JSONModels UserIDs = JsonConvert.DeserializeObject<JSONModels>(message);
+            return UserIDs.user.id;
         }
         /*
          * Method That Takes in JSON String as an Argument and Parses it to iterate through a list of sizes returned by API call
@@ -71,7 +86,7 @@ namespace FlickrDownloader
         {
             string jsonValue = message;
             string Download_Link = "";
-            JSON GetSizesDownload = JsonConvert.DeserializeObject<JSON>(jsonValue);
+            JSONModels GetSizesDownload = JsonConvert.DeserializeObject<JSONModels>(jsonValue);
             try
             {
                 foreach (SizeModel model in GetSizesDownload.sizes.size)
