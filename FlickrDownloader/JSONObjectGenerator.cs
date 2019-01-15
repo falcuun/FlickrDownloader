@@ -10,16 +10,10 @@ namespace FlickrDownloader
 {
     class JSONObjectGenerator
     {
-        /*
-         *List to be Filled with Photo IDs from JSON Response
-         */
+
         public List<string> ListOfPhotoIDs = new List<string>();
-        private static readonly HttpClient client = new HttpClient(); // HTTP Client for Establishing Connection
+        private static readonly HttpClient client = new HttpClient();
 
-
-        /*
-            Method for getting the JSON Response String from the API URL 
-        */
         public async Task<string> GetMessage(string url)
         {
             string responseString = await client.GetStringAsync(url);

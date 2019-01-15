@@ -38,12 +38,27 @@ namespace FlickrDownloader
                         SearchByUserURL();
                         break;
                     case 2:
+                        SearchByText();
                         break;
                     default: break;
                 }
             }
 
             Console.ReadLine();
+        }
+
+        private static void SearchByText()
+        {
+            TextSearchPhotosDownload tspd = new TextSearchPhotosDownload();
+            Console.WriteLine("Enter Search Query");
+            string query = Console.ReadLine();
+            Console.WriteLine("Enter Amount of Pictures per page: ");
+            while (!tspd.Per_Page(Console.ReadLine())) ;
+            Console.WriteLine("Enter Amount of Pages to Download From: ");
+            while (!tspd.Num_Pages(Console.ReadLine())) ;
+            Console.WriteLine("Enter Targeted Download Location: ");
+            string file_location = Console.ReadLine();
+            tspd.ObtainSearchedPhotos(file_location, query);
         }
 
         private static void SearchByUserURL()

@@ -1,29 +1,20 @@
 ﻿using System;
-using System.Net.Http;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
-
 
 namespace FlickrDownloader
 {
-    class UserPhotosDownload
+    class TextSearchPhotosDownload
     {
-        private JSONObjectGenerator jog = new JSONObjectGenerator(); // JSONObjectGenerator class Object
-
         private const string BASE_URL = "https://api.flickr.com/services/rest/?method="; // Base URL For Flickr APIs
         private const string JSONFormatRequest = "&format=json&nojsoncallback=1";
-        private const string People_NSID = "flickr.urls.lookupUser&api_key="; // Urls LookUpUser 
-        private const string GetPublicPhotos = "flickr.people.getPublicPhotos&api_key="; // People GetPublicPhotos 
+        private const string Search_By_Text = "flickr.photos.search&api_key=";
         private int Images_Per_Page; // User Entered Number of Images per Page
         private int Number_Of_Pages; // User Entered Number of Pages
 
-        public string GenerateUserID(string User_URL)
-        {
-            string NSID = "";
-            string USER_URL = "&url=\"" + User_URL + "\"";
-            string UserNSIDAPIUrl = BASE_URL + People_NSID + Program.API_KEY + USER_URL + JSONFormatRequest;
-            NSID = jog.GetUserNSID(jog.GetMessage(UserNSIDAPIUrl).Result);
-            return "&user_id=" + NSID;
-        }
+        JSONObjectGenerator jog = new JSONObjectGenerator();
 
         public bool Per_Page(string PerPage)
         {
@@ -69,9 +60,10 @@ namespace FlickrDownloader
             }
         }
 
-        private string GenerateUserPublicPhotosURL(string user_url, int page_index)
+        private string GenerateTextSearchURL(string query, int page_index)
         {
-            return BASE_URL + GetPublicPhotos + Program.API_KEY + GenerateUserID(user_url) + "&per_page=" + Images_Per_Page + "&page=" + page_index + "&format=json&nojsoncallback=1";
+            string url = BASE_URL + Search_By_Text + Program.API_KEY + "&tags=" + query + "&per_page=" + Images_Per_Page + "&page=" + page_index + JSONFormatRequest;
+            return url;
         }
 
         private string FormDownloadPath(string path, string photo_id)
@@ -79,18 +71,20 @@ namespace FlickrDownloader
             return path + "\\" + photo_id + ".jpg";
         }
 
-        public void ObtainUserPublicPhotos(string User_URL, string Download_Location)
+        public void ObtainSearchedPhotos(string path, string query)
         {
             for (int i = 1; i <= Number_Of_Pages; i++)
             {
-                jog.PopulateListOfPhotoIDs(jog.GetMessage(GenerateUserPublicPhotosURL(User_URL, i)).Result);
+                jog.PopulateListOfPhotoIDs(jog.GetMessage(GenerateTextSearchURL(query, i)).Result);
                 foreach (string Photo_ID in jog.ListOfPhotoIDs)
-                {
+                { 
                     string DownloadLink = jog.GetSizeDownload(jog.GetMessage(DownloaderClass.GenerateGetSizesAPI(Photo_ID)).Result);
-                    DownloaderClass.DownloadFile(DownloadLink, FormDownloadPath(Download_Location, Photo_ID));
+                    DownloaderClass.DownloadFile(DownloadLink, FormDownloadPath(path, Photo_ID));
                 }
                 jog.FlushTheListOfIDs();
             }
         }
+
+
     }
 }

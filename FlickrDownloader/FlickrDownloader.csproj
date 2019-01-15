@@ -62,7 +62,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DownloaderClass.cs" />
-    <Compile Include="FlickrConnection.cs" />
     <Compile Include="Models\JSONModels.cs" />
     <Compile Include="JSONObjectGenerator.cs" />
     <Compile Include="Models\PhotoModel.cs" />
@@ -73,6 +72,7 @@
     <Compile Include="JSONTopObject\Sizes.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="JSONTopObject\Users.cs" />
+    <Compile Include="TextSearchPhotosDownload.cs" />
     <Compile Include="UserPhotosDownload.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -22,7 +22,6 @@ namespace FlickrDownloader
             {
                 using (WebClient client = new WebClient())
                 {
-                    Console.WriteLine(URL);
                     client.DownloadFile(URL, file_path);
                 }
             }
