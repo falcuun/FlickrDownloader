@@ -1,6 +1,7 @@
 # FlickrDownloader
 This application uses Flickr API to provide the users with the ability to bulk download images from a specific user on Flickr
 
+C# .NET FrameWork 4.7 used
 ### How It Works
   - The Application asks user to input their developer API_KEY (This is to prevent abuse of my api_key) 
   - It Asks user for the method of searching (By Flickr User URL, Search query text, tags etc...)
