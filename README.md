@@ -13,5 +13,5 @@ C# .NET FrameWork 4.7 used
  
  ### Run
   To Run this application (for now) you will need Visual studio, or some other C# editor, to compile the code.
-  You will need Flickr Developer Account, and your own API_KEY
+  You will need Flickr Developer Account, and your own API_KEY,
   You will also need internet connection. 
