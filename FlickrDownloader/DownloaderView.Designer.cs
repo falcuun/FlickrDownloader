@@ -28,31 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.API_KEY_BOX = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.SEARCH_URL_BUTTON = new System.Windows.Forms.Button();
+            this.SEARCH_TEXT_BUTTON = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.SEARCH_BY_TEXT_BOX = new System.Windows.Forms.TextBox();
+            this.TEXT_PPP_BOX = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.TEXT_AMOUNT_PP_BOX = new System.Windows.Forms.TextBox();
+            this.TEXT_FILE_SAVE_BROWSER = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.URL_AMOUNT_PP_BOX = new System.Windows.Forms.TextBox();
+            this.URL_PPP_BOX = new System.Windows.Forms.TextBox();
+            this.SEARCH_BY_URL_BOX = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // textBox1
+            // API_KEY_BOX
             // 
-            this.textBox1.Location = new System.Drawing.Point(93, 12);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(695, 20);
-            this.textBox1.TabIndex = 0;
+            this.API_KEY_BOX.Location = new System.Drawing.Point(93, 12);
+            this.API_KEY_BOX.Name = "API_KEY_BOX";
+            this.API_KEY_BOX.Size = new System.Drawing.Size(695, 20);
+            this.API_KEY_BOX.TabIndex = 0;
             // 
             // label1
             // 
@@ -65,13 +71,13 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.textBox4);
+            this.panel1.Controls.Add(this.TEXT_AMOUNT_PP_BOX);
             this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.textBox3);
-            this.panel1.Controls.Add(this.textBox2);
+            this.panel1.Controls.Add(this.TEXT_PPP_BOX);
+            this.panel1.Controls.Add(this.SEARCH_BY_TEXT_BOX);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.SEARCH_TEXT_BUTTON);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Location = new System.Drawing.Point(15, 59);
             this.panel1.Name = "panel1";
@@ -80,7 +86,13 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.URL_AMOUNT_PP_BOX);
+            this.panel2.Controls.Add(this.URL_PPP_BOX);
+            this.panel2.Controls.Add(this.SEARCH_BY_URL_BOX);
+            this.panel2.Controls.Add(this.label9);
+            this.panel2.Controls.Add(this.label8);
+            this.panel2.Controls.Add(this.label7);
+            this.panel2.Controls.Add(this.SEARCH_URL_BUTTON);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Location = new System.Drawing.Point(435, 59);
             this.panel2.Name = "panel2";
@@ -105,23 +117,24 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Search By User URL";
             // 
-            // button1
+            // SEARCH_URL_BUTTON
             // 
-            this.button1.Location = new System.Drawing.Point(275, 326);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Search URL";
-            this.button1.UseVisualStyleBackColor = true;
+            this.SEARCH_URL_BUTTON.Location = new System.Drawing.Point(275, 326);
+            this.SEARCH_URL_BUTTON.Name = "SEARCH_URL_BUTTON";
+            this.SEARCH_URL_BUTTON.Size = new System.Drawing.Size(75, 23);
+            this.SEARCH_URL_BUTTON.TabIndex = 1;
+            this.SEARCH_URL_BUTTON.Text = "Search URL";
+            this.SEARCH_URL_BUTTON.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // SEARCH_TEXT_BUTTON
             // 
-            this.button2.Location = new System.Drawing.Point(269, 326);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Search Text";
-            this.button2.UseVisualStyleBackColor = true;
+            this.SEARCH_TEXT_BUTTON.Location = new System.Drawing.Point(3, 327);
+            this.SEARCH_TEXT_BUTTON.Name = "SEARCH_TEXT_BUTTON";
+            this.SEARCH_TEXT_BUTTON.Size = new System.Drawing.Size(75, 23);
+            this.SEARCH_TEXT_BUTTON.TabIndex = 1;
+            this.SEARCH_TEXT_BUTTON.Text = "Search Text";
+            this.SEARCH_TEXT_BUTTON.UseVisualStyleBackColor = true;
+            this.SEARCH_TEXT_BUTTON.Click += new System.EventHandler(this.SEARCH_TEXT_BUTTON_Click);
             // 
             // label4
             // 
@@ -141,19 +154,19 @@
             this.label5.TabIndex = 3;
             this.label5.Text = "Pictures Per Page:";
             // 
-            // textBox2
+            // SEARCH_BY_TEXT_BOX
             // 
-            this.textBox2.Location = new System.Drawing.Point(101, 22);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 4;
+            this.SEARCH_BY_TEXT_BOX.Location = new System.Drawing.Point(101, 22);
+            this.SEARCH_BY_TEXT_BOX.Name = "SEARCH_BY_TEXT_BOX";
+            this.SEARCH_BY_TEXT_BOX.Size = new System.Drawing.Size(100, 20);
+            this.SEARCH_BY_TEXT_BOX.TabIndex = 4;
             // 
-            // textBox3
+            // TEXT_PPP_BOX
             // 
-            this.textBox3.Location = new System.Drawing.Point(101, 48);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 5;
+            this.TEXT_PPP_BOX.Location = new System.Drawing.Point(101, 48);
+            this.TEXT_PPP_BOX.Name = "TEXT_PPP_BOX";
+            this.TEXT_PPP_BOX.Size = new System.Drawing.Size(100, 20);
+            this.TEXT_PPP_BOX.TabIndex = 5;
             // 
             // label6
             // 
@@ -164,22 +177,81 @@
             this.label6.TabIndex = 6;
             this.label6.Text = "Amount Of Pages:";
             // 
-            // textBox4
+            // TEXT_AMOUNT_PP_BOX
             // 
-            this.textBox4.Location = new System.Drawing.Point(101, 75);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 7;
+            this.TEXT_AMOUNT_PP_BOX.Location = new System.Drawing.Point(101, 75);
+            this.TEXT_AMOUNT_PP_BOX.Name = "TEXT_AMOUNT_PP_BOX";
+            this.TEXT_AMOUNT_PP_BOX.Size = new System.Drawing.Size(100, 20);
+            this.TEXT_AMOUNT_PP_BOX.TabIndex = 7;
+            // 
+            // TEXT_FILE_SAVE_BROWSER
+            // 
+            this.TEXT_FILE_SAVE_BROWSER.Location = new System.Drawing.Point(284, 232);
+            this.TEXT_FILE_SAVE_BROWSER.Name = "TEXT_FILE_SAVE_BROWSER";
+            this.TEXT_FILE_SAVE_BROWSER.Size = new System.Drawing.Size(194, 23);
+            this.TEXT_FILE_SAVE_BROWSER.TabIndex = 8;
+            this.TEXT_FILE_SAVE_BROWSER.Text = "Browse Download Location";
+            this.TEXT_FILE_SAVE_BROWSER.UseVisualStyleBackColor = true;
+            this.TEXT_FILE_SAVE_BROWSER.Click += new System.EventHandler(this.TEXT_FILE_SAVE_BROWSER_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(4, 25);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(54, 13);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "User URL";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(4, 51);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(95, 13);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "Pictures Per Page:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(3, 78);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(93, 13);
+            this.label9.TabIndex = 4;
+            this.label9.Text = "Amount Of Pages:";
+            // 
+            // URL_AMOUNT_PP_BOX
+            // 
+            this.URL_AMOUNT_PP_BOX.Location = new System.Drawing.Point(101, 75);
+            this.URL_AMOUNT_PP_BOX.Name = "URL_AMOUNT_PP_BOX";
+            this.URL_AMOUNT_PP_BOX.Size = new System.Drawing.Size(100, 20);
+            this.URL_AMOUNT_PP_BOX.TabIndex = 10;
+            // 
+            // URL_PPP_BOX
+            // 
+            this.URL_PPP_BOX.Location = new System.Drawing.Point(101, 48);
+            this.URL_PPP_BOX.Name = "URL_PPP_BOX";
+            this.URL_PPP_BOX.Size = new System.Drawing.Size(100, 20);
+            this.URL_PPP_BOX.TabIndex = 9;
+            // 
+            // SEARCH_BY_URL_BOX
+            // 
+            this.SEARCH_BY_URL_BOX.Location = new System.Drawing.Point(101, 22);
+            this.SEARCH_BY_URL_BOX.Name = "SEARCH_BY_URL_BOX";
+            this.SEARCH_BY_URL_BOX.Size = new System.Drawing.Size(100, 20);
+            this.SEARCH_BY_URL_BOX.TabIndex = 8;
             // 
             // DownloaderView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.TEXT_FILE_SAVE_BROWSER);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.API_KEY_BOX);
             this.Name = "DownloaderView";
             this.Text = "DownloaderView";
             this.panel1.ResumeLayout(false);
@@ -193,20 +265,26 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox API_KEY_BOX;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button SEARCH_TEXT_BUTTON;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button SEARCH_URL_BUTTON;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox TEXT_PPP_BOX;
+        private System.Windows.Forms.TextBox SEARCH_BY_TEXT_BOX;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.TextBox TEXT_AMOUNT_PP_BOX;
+        private System.Windows.Forms.Button TEXT_FILE_SAVE_BROWSER;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox URL_AMOUNT_PP_BOX;
+        private System.Windows.Forms.TextBox URL_PPP_BOX;
+        private System.Windows.Forms.TextBox SEARCH_BY_URL_BOX;
     }
 }

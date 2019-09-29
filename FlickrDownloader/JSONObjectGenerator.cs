@@ -46,7 +46,6 @@ namespace FlickrDownloader
         public void Query_Info(string jsonValue)
         {
             JSONModels QueryInfo = JsonConvert.DeserializeObject<JSONModels>(jsonValue);
-            Console.WriteLine("Query Has a Total of: " + QueryInfo.photos.total + " Image(s)");
         }
         /*
          *  Method that takes in JSON String as an Argument and then parses it to return the ID Of the Image

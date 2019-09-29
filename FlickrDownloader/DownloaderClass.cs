@@ -12,7 +12,7 @@ namespace FlickrDownloader
         public static string GenerateGetSizesAPI(string Photo_ID)
         {
             string photo_id = "&photo_id=" + Photo_ID;
-            string Photos_GetSizes = BASE_URL + GetSizes + Program.API_KEY + photo_id + JSONFormatRequest;
+            string Photos_GetSizes = BASE_URL + GetSizes + DownloaderView.API_KEY + photo_id + JSONFormatRequest;
             return Photos_GetSizes;
         }
 

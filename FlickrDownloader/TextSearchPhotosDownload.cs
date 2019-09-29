@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace FlickrDownloader
@@ -62,12 +63,15 @@ namespace FlickrDownloader
 
         private string GenerateTextSearchURL(string query, int page_index)
         {
-            string url = BASE_URL + Search_By_Text + Program.API_KEY + "&text=" + query + "&sort=relevance" + "&per_page=" + Images_Per_Page + "&page=" + page_index + JSONFormatRequest;
+            string url = BASE_URL + Search_By_Text + DownloaderView.API_KEY + "&text=" + query + "&sort=relevance" + "&per_page=" + Images_Per_Page + "&page=" + page_index + JSONFormatRequest;
             return url;
         }
         public void TotalImages(string query)
         {
-            jog.Query_Info(jog.GetMessage(GenerateTextSearchURL(query, 0)).Result);
+            new Thread(() => {
+                jog.Query_Info(jog.GetMessage(GenerateTextSearchURL(query, 0)).Result);
+            }).Start();
+           
         }
 
         private string FormDownloadPath(string path, string photo_id)
@@ -77,17 +81,21 @@ namespace FlickrDownloader
 
         public void ObtainSearchedPhotos(string path, string query)
         {
-            for (int i = 1; i <= Number_Of_Pages; i++)
-            {
-                jog.PopulateListOfPhotoIDs(jog.GetMessage(GenerateTextSearchURL(query, i)).Result);
-                foreach (string Photo_ID in jog.ListOfPhotoIDs)
+            Thread  t = new Thread(() => {
+                for (int i = 1; i <= Number_Of_Pages; i++)
                 {
-                    string DownloadLink = jog.GetSizeDownload(jog.GetMessage(DownloaderClass.GenerateGetSizesAPI(Photo_ID)).Result);
-                    DownloaderClass.DownloadImage(DownloadLink, FormDownloadPath(path, Photo_ID));
+                    Console.WriteLine(i);
+                    jog.PopulateListOfPhotoIDs(jog.GetMessage(GenerateTextSearchURL(query, i)).Result);
+                    foreach (string Photo_ID in jog.ListOfPhotoIDs)
+                    {
+                        string DownloadLink = jog.GetSizeDownload(jog.GetMessage(DownloaderClass.GenerateGetSizesAPI(Photo_ID)).Result);
+                        DownloaderClass.DownloadImage(DownloadLink, FormDownloadPath(path, Photo_ID));
+                    }
+                    jog.FlushTheListOfIDs();
                 }
-                jog.FlushTheListOfIDs();
-            }
-            Console.WriteLine("Download Complete");
+                Console.WriteLine("Download Complete");
+            });
+            t.Start();
         }
 
 

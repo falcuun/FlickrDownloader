@@ -20,7 +20,7 @@ namespace FlickrDownloader
         {
             string NSID = "";
             string USER_URL = "&url=\"" + User_URL + "\"";
-            string UserNSIDAPIUrl = BASE_URL + People_NSID + Program.API_KEY + USER_URL + JSONFormatRequest;
+            string UserNSIDAPIUrl = BASE_URL + People_NSID + DownloaderView.API_KEY + USER_URL + JSONFormatRequest;
             NSID = jog.GetUserNSID(jog.GetMessage(UserNSIDAPIUrl).Result);
             return "&user_id=" + NSID;
         }
@@ -71,7 +71,7 @@ namespace FlickrDownloader
 
         private string GenerateUserPublicPhotosURL(string user_url, int page_index)
         {
-            return BASE_URL + GetPublicPhotos + Program.API_KEY + GenerateUserID(user_url) + "&per_page=" + Images_Per_Page + "&page=" + page_index + "&format=json&nojsoncallback=1";
+            return BASE_URL + GetPublicPhotos + DownloaderView.API_KEY + GenerateUserID(user_url) + "&per_page=" + Images_Per_Page + "&page=" + page_index + "&format=json&nojsoncallback=1";
         }
 
         private string FormDownloadPath(string path, string photo_id)
