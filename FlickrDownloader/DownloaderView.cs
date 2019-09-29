@@ -94,15 +94,7 @@ namespace FlickrDownloader
                     }
                     else
                     {
-                        string user;
-                        if (!SEARCH_BY_URL_BOX.Text.EndsWith("/"))
-                        {
-                            user = SEARCH_BY_URL_BOX.Text + "/";
-                        }
-                        else
-                        {
-                            user = SEARCH_BY_URL_BOX.Text;
-                        }
+                        string user = "https://www.flickr.com/photos/" +  SEARCH_BY_URL_BOX.Text + "/";
                         upd.ObtainUserPublicPhotos(user, FileLocation);
                     }
                 }
