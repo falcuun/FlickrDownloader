@@ -79,6 +79,8 @@ namespace FlickrDownloader
             return path + "\\" + photo_id + ".jpg";
         }
 
+
+
         public void ObtainSearchedPhotos(string path, string query)
         {
             Thread  t = new Thread(() => {

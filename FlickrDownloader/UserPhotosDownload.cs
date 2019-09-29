@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 
 
@@ -81,7 +82,8 @@ namespace FlickrDownloader
 
         public void ObtainUserPublicPhotos(string User_URL, string Download_Location)
         {
-            for (int i = 1; i <= Number_Of_Pages; i++)
+            Thread t = new Thread(() => {
+                for (int i = 1; i <= Number_Of_Pages; i++)
             {
                 jog.PopulateListOfPhotoIDs(jog.GetMessage(GenerateUserPublicPhotosURL(User_URL, i)).Result);
                 foreach (string Photo_ID in jog.ListOfPhotoIDs)
@@ -92,6 +94,8 @@ namespace FlickrDownloader
                 jog.FlushTheListOfIDs();
             }
             Console.WriteLine("Download Complete");
+            });
+            t.Start();
         }
     }
 }

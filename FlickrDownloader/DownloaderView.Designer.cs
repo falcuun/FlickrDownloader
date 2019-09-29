@@ -49,6 +49,7 @@
             this.URL_AMOUNT_PP_BOX = new System.Windows.Forms.TextBox();
             this.URL_PPP_BOX = new System.Windows.Forms.TextBox();
             this.SEARCH_BY_URL_BOX = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -71,17 +72,17 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.TEXT_AMOUNT_PP_BOX);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.TEXT_PPP_BOX);
             this.panel1.Controls.Add(this.SEARCH_BY_TEXT_BOX);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.SEARCH_TEXT_BUTTON);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Location = new System.Drawing.Point(15, 59);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(347, 350);
+            this.panel1.Size = new System.Drawing.Size(347, 114);
             this.panel1.TabIndex = 3;
             // 
             // panel2
@@ -92,11 +93,10 @@
             this.panel2.Controls.Add(this.label9);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.label7);
-            this.panel2.Controls.Add(this.SEARCH_URL_BUTTON);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Location = new System.Drawing.Point(435, 59);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(353, 350);
+            this.panel2.Size = new System.Drawing.Size(353, 114);
             this.panel2.TabIndex = 4;
             // 
             // label2
@@ -119,16 +119,17 @@
             // 
             // SEARCH_URL_BUTTON
             // 
-            this.SEARCH_URL_BUTTON.Location = new System.Drawing.Point(275, 326);
+            this.SEARCH_URL_BUTTON.Location = new System.Drawing.Point(429, 206);
             this.SEARCH_URL_BUTTON.Name = "SEARCH_URL_BUTTON";
             this.SEARCH_URL_BUTTON.Size = new System.Drawing.Size(75, 23);
             this.SEARCH_URL_BUTTON.TabIndex = 1;
             this.SEARCH_URL_BUTTON.Text = "Search URL";
             this.SEARCH_URL_BUTTON.UseVisualStyleBackColor = true;
+            this.SEARCH_URL_BUTTON.Click += new System.EventHandler(this.SEARCH_URL_BUTTON_Click);
             // 
             // SEARCH_TEXT_BUTTON
             // 
-            this.SEARCH_TEXT_BUTTON.Location = new System.Drawing.Point(3, 327);
+            this.SEARCH_TEXT_BUTTON.Location = new System.Drawing.Point(310, 206);
             this.SEARCH_TEXT_BUTTON.Name = "SEARCH_TEXT_BUTTON";
             this.SEARCH_TEXT_BUTTON.Size = new System.Drawing.Size(75, 23);
             this.SEARCH_TEXT_BUTTON.TabIndex = 1;
@@ -186,7 +187,7 @@
             // 
             // TEXT_FILE_SAVE_BROWSER
             // 
-            this.TEXT_FILE_SAVE_BROWSER.Location = new System.Drawing.Point(284, 232);
+            this.TEXT_FILE_SAVE_BROWSER.Location = new System.Drawing.Point(310, 179);
             this.TEXT_FILE_SAVE_BROWSER.Name = "TEXT_FILE_SAVE_BROWSER";
             this.TEXT_FILE_SAVE_BROWSER.Size = new System.Drawing.Size(194, 23);
             this.TEXT_FILE_SAVE_BROWSER.TabIndex = 8;
@@ -242,6 +243,15 @@
             this.SEARCH_BY_URL_BOX.Size = new System.Drawing.Size(100, 20);
             this.SEARCH_BY_URL_BOX.TabIndex = 8;
             // 
+            // label10
+            // 
+            this.label10.AllowDrop = true;
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(280, 157);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(0, 13);
+            this.label10.TabIndex = 9;
+            // 
             // DownloaderView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -252,6 +262,8 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.API_KEY_BOX);
+            this.Controls.Add(this.SEARCH_TEXT_BUTTON);
+            this.Controls.Add(this.SEARCH_URL_BUTTON);
             this.Name = "DownloaderView";
             this.Text = "DownloaderView";
             this.panel1.ResumeLayout(false);
@@ -286,5 +298,6 @@
         private System.Windows.Forms.TextBox URL_AMOUNT_PP_BOX;
         private System.Windows.Forms.TextBox URL_PPP_BOX;
         private System.Windows.Forms.TextBox SEARCH_BY_URL_BOX;
+        private System.Windows.Forms.Label label10;
     }
 }
