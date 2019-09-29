@@ -53,6 +53,7 @@
     <Reference Include="System.Drawing.Design" />
     <Reference Include="System.Management" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -62,6 +63,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DownloaderClass.cs" />
+    <Compile Include="DownloaderView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DownloaderView.Designer.cs">
+      <DependentUpon>DownloaderView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\JSONModels.cs" />
     <Compile Include="JSONObjectGenerator.cs" />
     <Compile Include="Models\PhotoModel.cs" />
@@ -78,6 +85,11 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DownloaderView.resx">
+      <DependentUpon>DownloaderView.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

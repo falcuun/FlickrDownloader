@@ -1,8 +1,6 @@
 ﻿using System;
-using System.IO;
-using System.Net;
-using System.Threading.Tasks;
-using System.Net.Http;
+using System.Windows.Forms;
+
 namespace FlickrDownloader
 {
     class Program
@@ -22,9 +20,12 @@ namespace FlickrDownloader
                 return true;
             }
         }
-
+        [STAThread]
         static void Main(string[] args)
         {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new DownloaderView());
 
             Console.WriteLine("Enter your API KEY");
             while(CheckAPIKey(Console.ReadLine()))
